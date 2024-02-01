@@ -1,0 +1,3214 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> procedures
+Rule 2     program -> declList procedures
+Rule 3     procedures -> procedures procedureDecl
+Rule 4     procedures -> procedureDecl
+Rule 5     declList -> type identifierList SEMICOLON
+Rule 6     declList -> declList type identifierList SEMICOLON
+Rule 7     procedureDecl -> procedureHead procedureBody
+Rule 8     procedureHead -> functionDecl declList
+Rule 9     procedureHead -> functionDecl
+Rule 10    functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+Rule 11    functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE
+Rule 12    procedureBody -> statementList RBRACE
+Rule 13    paramDeclList -> type varDecl
+Rule 14    paramDeclList -> paramDeclList COMMA type varDecl
+Rule 15    identifierList -> varDecl
+Rule 16    identifierList -> identifierList COMMA varDecl
+Rule 17    varDecl -> IDENTIFIER
+Rule 18    varDecl -> IDENTIFIER LBRACKET INTCON RBRACKET
+Rule 19    varDecl -> IDENTIFIER LBRACKET CHARCON RBRACKET
+Rule 20    type -> CHAR
+Rule 21    type -> INT
+Rule 22    type -> FLOAT
+Rule 23    type -> VOID
+Rule 24    statement -> assignment
+Rule 25    statement -> ifStatement
+Rule 26    statement -> whileStatement
+Rule 27    statement -> ioStatement
+Rule 28    statement -> returnStatement
+Rule 29    statement -> exitStatement
+Rule 30    statement -> compoundStatement
+Rule 31    statement -> callStatement
+Rule 32    callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON
+Rule 33    callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON
+Rule 34    assignment -> variable_def ASSIGN expr SEMICOLON
+Rule 35    variable_def -> IDENTIFIER
+Rule 36    variable_def -> IDENTIFIER LBRACKET expr RBRACKET
+Rule 37    ifStatement -> IF testAndThen ELSE compoundStatement
+Rule 38    ifStatement -> IF testAndThen
+Rule 39    testAndThen -> test compoundStatement
+Rule 40    test -> LPAREN expr RPAREN
+Rule 41    whileStatement -> WHILE whileExpr statement
+Rule 42    whileExpr -> LPAREN expr RPAREN
+Rule 43    ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON
+Rule 44    ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON
+Rule 45    ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON
+Rule 46    returnStatement -> RETURN expr SEMICOLON
+Rule 47    exitStatement -> EXIT SEMICOLON
+Rule 48    compoundStatement -> LBRACE statementList RBRACE
+Rule 49    statementList -> statement
+Rule 50    statementList -> statementList statement
+Rule 51    expr -> simpleExpr
+Rule 52    expr -> expr OR simpleExpr
+Rule 53    expr -> expr AND simpleExpr
+Rule 54    expr -> NOT simpleExpr
+Rule 55    simpleExpr -> addExpr
+Rule 56    simpleExpr -> simpleExpr EQ addExpr
+Rule 57    simpleExpr -> simpleExpr NE addExpr
+Rule 58    simpleExpr -> simpleExpr LE addExpr
+Rule 59    simpleExpr -> simpleExpr LT addExpr
+Rule 60    simpleExpr -> simpleExpr GE addExpr
+Rule 61    simpleExpr -> simpleExpr GT addExpr
+Rule 62    addExpr -> mulExpr
+Rule 63    addExpr -> addExpr PLUS mulExpr
+Rule 64    addExpr -> addExpr MINUS mulExpr
+Rule 65    mulExpr -> factor
+Rule 66    mulExpr -> mulExpr TIMES factor
+Rule 67    mulExpr -> mulExpr DIVIDE factor
+Rule 68    factor -> variable
+Rule 69    factor -> constant
+Rule 70    factor -> IDENTIFIER LPAREN RPAREN
+Rule 71    factor -> IDENTIFIER LPAREN argList RPAREN
+Rule 72    factor -> LPAREN expr RPAREN
+Rule 73    variable -> IDENTIFIER
+Rule 74    variable -> IDENTIFIER LBRACKET expr RBRACKET
+Rule 75    stringConstant -> STRING
+Rule 76    constant -> FLOATCON
+Rule 77    constant -> INTCON
+Rule 78    constant -> CHARCON
+Rule 79    argList -> expr
+Rule 80    argList -> argList COMMA expr
+
+Terminals, with rules where they appear
+
+AND                  : 53
+ASSIGN               : 34
+CHAR                 : 20
+CHARCON              : 19 78
+COMMA                : 14 16 80
+DIVIDE               : 67
+ELSE                 : 37
+EQ                   : 56
+EXIT                 : 47
+FLOAT                : 22
+FLOATCON             : 76
+GE                   : 60
+GT                   : 61
+IDENTIFIER           : 10 11 17 18 19 32 33 35 36 70 71 73 74
+IF                   : 37 38
+INT                  : 21
+INTCON               : 18 77
+LBRACE               : 10 11 48
+LBRACKET             : 18 19 36 74
+LE                   : 58
+LPAREN               : 10 11 32 33 40 42 43 44 45 70 71 72
+LT                   : 59
+MINUS                : 64
+NE                   : 57
+NOT                  : 54
+OR                   : 52
+PLUS                 : 63
+RBRACE               : 12 48
+RBRACKET             : 18 19 36 74
+READ                 : 43
+RETURN               : 46
+RPAREN               : 10 11 32 33 40 42 43 44 45 70 71 72
+SEMICOLON            : 5 6 32 33 34 43 44 45 46 47
+STRING               : 75
+TIMES                : 66
+VOID                 : 23
+WHILE                : 41
+WRITE                : 44 45
+error                : 
+
+Nonterminals, with rules where they appear
+
+addExpr              : 55 56 57 58 59 60 61 63 64
+argList              : 33 71 80
+assignment           : 24
+callStatement        : 31
+compoundStatement    : 30 37 39
+constant             : 69
+declList             : 2 6 8
+exitStatement        : 29
+expr                 : 34 36 40 42 44 46 52 53 72 74 79 80
+factor               : 65 66 67
+functionDecl         : 8 9
+identifierList       : 5 6 16
+ifStatement          : 25
+ioStatement          : 27
+mulExpr              : 62 63 64 66 67
+paramDeclList        : 10 14
+procedureBody        : 7
+procedureDecl        : 3 4
+procedureHead        : 7
+procedures           : 1 2 3
+program              : 0
+returnStatement      : 28
+simpleExpr           : 51 52 53 54 56 57 58 59 60 61
+statement            : 41 49 50
+statementList        : 12 48 50
+stringConstant       : 45
+test                 : 39
+testAndThen          : 37 38
+type                 : 5 6 10 11 13 14
+varDecl              : 13 14 15 16
+variable             : 68
+variable_def         : 34 43
+whileExpr            : 41
+whileStatement       : 26
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . procedures
+    (2) program -> . declList procedures
+    (3) procedures -> . procedures procedureDecl
+    (4) procedures -> . procedureDecl
+    (5) declList -> . type identifierList SEMICOLON
+    (6) declList -> . declList type identifierList SEMICOLON
+    (7) procedureDecl -> . procedureHead procedureBody
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+    (8) procedureHead -> . functionDecl declList
+    (9) procedureHead -> . functionDecl
+    (10) functionDecl -> . type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> . type IDENTIFIER LPAREN RPAREN LBRACE
+
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    program                        shift and go to state 1
+    procedures                     shift and go to state 2
+    declList                       shift and go to state 3
+    procedureDecl                  shift and go to state 4
+    type                           shift and go to state 5
+    procedureHead                  shift and go to state 6
+    functionDecl                   shift and go to state 11
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> procedures .
+    (3) procedures -> procedures . procedureDecl
+    (7) procedureDecl -> . procedureHead procedureBody
+    (8) procedureHead -> . functionDecl declList
+    (9) procedureHead -> . functionDecl
+    (10) functionDecl -> . type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> . type IDENTIFIER LPAREN RPAREN LBRACE
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+
+    $end            reduce using rule 1 (program -> procedures .)
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    procedureDecl                  shift and go to state 12
+    procedureHead                  shift and go to state 6
+    functionDecl                   shift and go to state 11
+    type                           shift and go to state 13
+
+state 3
+
+    (2) program -> declList . procedures
+    (6) declList -> declList . type identifierList SEMICOLON
+    (3) procedures -> . procedures procedureDecl
+    (4) procedures -> . procedureDecl
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+    (7) procedureDecl -> . procedureHead procedureBody
+    (8) procedureHead -> . functionDecl declList
+    (9) procedureHead -> . functionDecl
+    (10) functionDecl -> . type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> . type IDENTIFIER LPAREN RPAREN LBRACE
+
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    procedures                     shift and go to state 14
+    type                           shift and go to state 15
+    procedureDecl                  shift and go to state 4
+    procedureHead                  shift and go to state 6
+    functionDecl                   shift and go to state 11
+
+state 4
+
+    (4) procedures -> procedureDecl .
+
+    CHAR            reduce using rule 4 (procedures -> procedureDecl .)
+    INT             reduce using rule 4 (procedures -> procedureDecl .)
+    FLOAT           reduce using rule 4 (procedures -> procedureDecl .)
+    VOID            reduce using rule 4 (procedures -> procedureDecl .)
+    $end            reduce using rule 4 (procedures -> procedureDecl .)
+
+
+state 5
+
+    (5) declList -> type . identifierList SEMICOLON
+    (10) functionDecl -> type . IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> type . IDENTIFIER LPAREN RPAREN LBRACE
+    (15) identifierList -> . varDecl
+    (16) identifierList -> . identifierList COMMA varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 17
+
+    identifierList                 shift and go to state 16
+    varDecl                        shift and go to state 18
+
+state 6
+
+    (7) procedureDecl -> procedureHead . procedureBody
+    (12) procedureBody -> . statementList RBRACE
+    (49) statementList -> . statement
+    (50) statementList -> . statementList statement
+    (24) statement -> . assignment
+    (25) statement -> . ifStatement
+    (26) statement -> . whileStatement
+    (27) statement -> . ioStatement
+    (28) statement -> . returnStatement
+    (29) statement -> . exitStatement
+    (30) statement -> . compoundStatement
+    (31) statement -> . callStatement
+    (34) assignment -> . variable_def ASSIGN expr SEMICOLON
+    (37) ifStatement -> . IF testAndThen ELSE compoundStatement
+    (38) ifStatement -> . IF testAndThen
+    (41) whileStatement -> . WHILE whileExpr statement
+    (43) ioStatement -> . READ LPAREN variable_def RPAREN SEMICOLON
+    (44) ioStatement -> . WRITE LPAREN expr RPAREN SEMICOLON
+    (45) ioStatement -> . WRITE LPAREN stringConstant RPAREN SEMICOLON
+    (46) returnStatement -> . RETURN expr SEMICOLON
+    (47) exitStatement -> . EXIT SEMICOLON
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+    (32) callStatement -> . IDENTIFIER LPAREN RPAREN SEMICOLON
+    (33) callStatement -> . IDENTIFIER LPAREN argList RPAREN SEMICOLON
+    (35) variable_def -> . IDENTIFIER
+    (36) variable_def -> . IDENTIFIER LBRACKET expr RBRACKET
+
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    READ            shift and go to state 33
+    WRITE           shift and go to state 34
+    RETURN          shift and go to state 35
+    EXIT            shift and go to state 36
+    LBRACE          shift and go to state 37
+    IDENTIFIER      shift and go to state 38
+
+    procedureBody                  shift and go to state 19
+    statementList                  shift and go to state 20
+    statement                      shift and go to state 21
+    assignment                     shift and go to state 22
+    ifStatement                    shift and go to state 23
+    whileStatement                 shift and go to state 24
+    ioStatement                    shift and go to state 25
+    returnStatement                shift and go to state 26
+    exitStatement                  shift and go to state 27
+    compoundStatement              shift and go to state 28
+    callStatement                  shift and go to state 29
+    variable_def                   shift and go to state 30
+
+state 7
+
+    (20) type -> CHAR .
+
+    IDENTIFIER      reduce using rule 20 (type -> CHAR .)
+
+
+state 8
+
+    (21) type -> INT .
+
+    IDENTIFIER      reduce using rule 21 (type -> INT .)
+
+
+state 9
+
+    (22) type -> FLOAT .
+
+    IDENTIFIER      reduce using rule 22 (type -> FLOAT .)
+
+
+state 10
+
+    (23) type -> VOID .
+
+    IDENTIFIER      reduce using rule 23 (type -> VOID .)
+
+
+state 11
+
+    (8) procedureHead -> functionDecl . declList
+    (9) procedureHead -> functionDecl .
+    (5) declList -> . type identifierList SEMICOLON
+    (6) declList -> . declList type identifierList SEMICOLON
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+
+    IF              reduce using rule 9 (procedureHead -> functionDecl .)
+    WHILE           reduce using rule 9 (procedureHead -> functionDecl .)
+    READ            reduce using rule 9 (procedureHead -> functionDecl .)
+    WRITE           reduce using rule 9 (procedureHead -> functionDecl .)
+    RETURN          reduce using rule 9 (procedureHead -> functionDecl .)
+    EXIT            reduce using rule 9 (procedureHead -> functionDecl .)
+    LBRACE          reduce using rule 9 (procedureHead -> functionDecl .)
+    IDENTIFIER      reduce using rule 9 (procedureHead -> functionDecl .)
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    declList                       shift and go to state 39
+    type                           shift and go to state 40
+
+state 12
+
+    (3) procedures -> procedures procedureDecl .
+
+    CHAR            reduce using rule 3 (procedures -> procedures procedureDecl .)
+    INT             reduce using rule 3 (procedures -> procedures procedureDecl .)
+    FLOAT           reduce using rule 3 (procedures -> procedures procedureDecl .)
+    VOID            reduce using rule 3 (procedures -> procedures procedureDecl .)
+    $end            reduce using rule 3 (procedures -> procedures procedureDecl .)
+
+
+state 13
+
+    (10) functionDecl -> type . IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> type . IDENTIFIER LPAREN RPAREN LBRACE
+
+    IDENTIFIER      shift and go to state 41
+
+
+state 14
+
+    (2) program -> declList procedures .
+    (3) procedures -> procedures . procedureDecl
+    (7) procedureDecl -> . procedureHead procedureBody
+    (8) procedureHead -> . functionDecl declList
+    (9) procedureHead -> . functionDecl
+    (10) functionDecl -> . type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> . type IDENTIFIER LPAREN RPAREN LBRACE
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+
+    $end            reduce using rule 2 (program -> declList procedures .)
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    procedureDecl                  shift and go to state 12
+    procedureHead                  shift and go to state 6
+    functionDecl                   shift and go to state 11
+    type                           shift and go to state 13
+
+state 15
+
+    (6) declList -> declList type . identifierList SEMICOLON
+    (10) functionDecl -> type . IDENTIFIER LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> type . IDENTIFIER LPAREN RPAREN LBRACE
+    (15) identifierList -> . varDecl
+    (16) identifierList -> . identifierList COMMA varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 17
+
+    identifierList                 shift and go to state 42
+    varDecl                        shift and go to state 18
+
+state 16
+
+    (5) declList -> type identifierList . SEMICOLON
+    (16) identifierList -> identifierList . COMMA varDecl
+
+    SEMICOLON       shift and go to state 43
+    COMMA           shift and go to state 44
+
+
+state 17
+
+    (10) functionDecl -> type IDENTIFIER . LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> type IDENTIFIER . LPAREN RPAREN LBRACE
+    (17) varDecl -> IDENTIFIER .
+    (18) varDecl -> IDENTIFIER . LBRACKET INTCON RBRACKET
+    (19) varDecl -> IDENTIFIER . LBRACKET CHARCON RBRACKET
+
+    LPAREN          shift and go to state 45
+    SEMICOLON       reduce using rule 17 (varDecl -> IDENTIFIER .)
+    COMMA           reduce using rule 17 (varDecl -> IDENTIFIER .)
+    LBRACKET        shift and go to state 46
+
+
+state 18
+
+    (15) identifierList -> varDecl .
+
+    SEMICOLON       reduce using rule 15 (identifierList -> varDecl .)
+    COMMA           reduce using rule 15 (identifierList -> varDecl .)
+
+
+state 19
+
+    (7) procedureDecl -> procedureHead procedureBody .
+
+    CHAR            reduce using rule 7 (procedureDecl -> procedureHead procedureBody .)
+    INT             reduce using rule 7 (procedureDecl -> procedureHead procedureBody .)
+    FLOAT           reduce using rule 7 (procedureDecl -> procedureHead procedureBody .)
+    VOID            reduce using rule 7 (procedureDecl -> procedureHead procedureBody .)
+    $end            reduce using rule 7 (procedureDecl -> procedureHead procedureBody .)
+
+
+state 20
+
+    (12) procedureBody -> statementList . RBRACE
+    (50) statementList -> statementList . statement
+    (24) statement -> . assignment
+    (25) statement -> . ifStatement
+    (26) statement -> . whileStatement
+    (27) statement -> . ioStatement
+    (28) statement -> . returnStatement
+    (29) statement -> . exitStatement
+    (30) statement -> . compoundStatement
+    (31) statement -> . callStatement
+    (34) assignment -> . variable_def ASSIGN expr SEMICOLON
+    (37) ifStatement -> . IF testAndThen ELSE compoundStatement
+    (38) ifStatement -> . IF testAndThen
+    (41) whileStatement -> . WHILE whileExpr statement
+    (43) ioStatement -> . READ LPAREN variable_def RPAREN SEMICOLON
+    (44) ioStatement -> . WRITE LPAREN expr RPAREN SEMICOLON
+    (45) ioStatement -> . WRITE LPAREN stringConstant RPAREN SEMICOLON
+    (46) returnStatement -> . RETURN expr SEMICOLON
+    (47) exitStatement -> . EXIT SEMICOLON
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+    (32) callStatement -> . IDENTIFIER LPAREN RPAREN SEMICOLON
+    (33) callStatement -> . IDENTIFIER LPAREN argList RPAREN SEMICOLON
+    (35) variable_def -> . IDENTIFIER
+    (36) variable_def -> . IDENTIFIER LBRACKET expr RBRACKET
+
+    RBRACE          shift and go to state 47
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    READ            shift and go to state 33
+    WRITE           shift and go to state 34
+    RETURN          shift and go to state 35
+    EXIT            shift and go to state 36
+    LBRACE          shift and go to state 37
+    IDENTIFIER      shift and go to state 38
+
+    statement                      shift and go to state 48
+    assignment                     shift and go to state 22
+    ifStatement                    shift and go to state 23
+    whileStatement                 shift and go to state 24
+    ioStatement                    shift and go to state 25
+    returnStatement                shift and go to state 26
+    exitStatement                  shift and go to state 27
+    compoundStatement              shift and go to state 28
+    callStatement                  shift and go to state 29
+    variable_def                   shift and go to state 30
+
+state 21
+
+    (49) statementList -> statement .
+
+    RBRACE          reduce using rule 49 (statementList -> statement .)
+    IF              reduce using rule 49 (statementList -> statement .)
+    WHILE           reduce using rule 49 (statementList -> statement .)
+    READ            reduce using rule 49 (statementList -> statement .)
+    WRITE           reduce using rule 49 (statementList -> statement .)
+    RETURN          reduce using rule 49 (statementList -> statement .)
+    EXIT            reduce using rule 49 (statementList -> statement .)
+    LBRACE          reduce using rule 49 (statementList -> statement .)
+    IDENTIFIER      reduce using rule 49 (statementList -> statement .)
+
+
+state 22
+
+    (24) statement -> assignment .
+
+    RBRACE          reduce using rule 24 (statement -> assignment .)
+    IF              reduce using rule 24 (statement -> assignment .)
+    WHILE           reduce using rule 24 (statement -> assignment .)
+    READ            reduce using rule 24 (statement -> assignment .)
+    WRITE           reduce using rule 24 (statement -> assignment .)
+    RETURN          reduce using rule 24 (statement -> assignment .)
+    EXIT            reduce using rule 24 (statement -> assignment .)
+    LBRACE          reduce using rule 24 (statement -> assignment .)
+    IDENTIFIER      reduce using rule 24 (statement -> assignment .)
+
+
+state 23
+
+    (25) statement -> ifStatement .
+
+    RBRACE          reduce using rule 25 (statement -> ifStatement .)
+    IF              reduce using rule 25 (statement -> ifStatement .)
+    WHILE           reduce using rule 25 (statement -> ifStatement .)
+    READ            reduce using rule 25 (statement -> ifStatement .)
+    WRITE           reduce using rule 25 (statement -> ifStatement .)
+    RETURN          reduce using rule 25 (statement -> ifStatement .)
+    EXIT            reduce using rule 25 (statement -> ifStatement .)
+    LBRACE          reduce using rule 25 (statement -> ifStatement .)
+    IDENTIFIER      reduce using rule 25 (statement -> ifStatement .)
+
+
+state 24
+
+    (26) statement -> whileStatement .
+
+    RBRACE          reduce using rule 26 (statement -> whileStatement .)
+    IF              reduce using rule 26 (statement -> whileStatement .)
+    WHILE           reduce using rule 26 (statement -> whileStatement .)
+    READ            reduce using rule 26 (statement -> whileStatement .)
+    WRITE           reduce using rule 26 (statement -> whileStatement .)
+    RETURN          reduce using rule 26 (statement -> whileStatement .)
+    EXIT            reduce using rule 26 (statement -> whileStatement .)
+    LBRACE          reduce using rule 26 (statement -> whileStatement .)
+    IDENTIFIER      reduce using rule 26 (statement -> whileStatement .)
+
+
+state 25
+
+    (27) statement -> ioStatement .
+
+    RBRACE          reduce using rule 27 (statement -> ioStatement .)
+    IF              reduce using rule 27 (statement -> ioStatement .)
+    WHILE           reduce using rule 27 (statement -> ioStatement .)
+    READ            reduce using rule 27 (statement -> ioStatement .)
+    WRITE           reduce using rule 27 (statement -> ioStatement .)
+    RETURN          reduce using rule 27 (statement -> ioStatement .)
+    EXIT            reduce using rule 27 (statement -> ioStatement .)
+    LBRACE          reduce using rule 27 (statement -> ioStatement .)
+    IDENTIFIER      reduce using rule 27 (statement -> ioStatement .)
+
+
+state 26
+
+    (28) statement -> returnStatement .
+
+    RBRACE          reduce using rule 28 (statement -> returnStatement .)
+    IF              reduce using rule 28 (statement -> returnStatement .)
+    WHILE           reduce using rule 28 (statement -> returnStatement .)
+    READ            reduce using rule 28 (statement -> returnStatement .)
+    WRITE           reduce using rule 28 (statement -> returnStatement .)
+    RETURN          reduce using rule 28 (statement -> returnStatement .)
+    EXIT            reduce using rule 28 (statement -> returnStatement .)
+    LBRACE          reduce using rule 28 (statement -> returnStatement .)
+    IDENTIFIER      reduce using rule 28 (statement -> returnStatement .)
+
+
+state 27
+
+    (29) statement -> exitStatement .
+
+    RBRACE          reduce using rule 29 (statement -> exitStatement .)
+    IF              reduce using rule 29 (statement -> exitStatement .)
+    WHILE           reduce using rule 29 (statement -> exitStatement .)
+    READ            reduce using rule 29 (statement -> exitStatement .)
+    WRITE           reduce using rule 29 (statement -> exitStatement .)
+    RETURN          reduce using rule 29 (statement -> exitStatement .)
+    EXIT            reduce using rule 29 (statement -> exitStatement .)
+    LBRACE          reduce using rule 29 (statement -> exitStatement .)
+    IDENTIFIER      reduce using rule 29 (statement -> exitStatement .)
+
+
+state 28
+
+    (30) statement -> compoundStatement .
+
+    RBRACE          reduce using rule 30 (statement -> compoundStatement .)
+    IF              reduce using rule 30 (statement -> compoundStatement .)
+    WHILE           reduce using rule 30 (statement -> compoundStatement .)
+    READ            reduce using rule 30 (statement -> compoundStatement .)
+    WRITE           reduce using rule 30 (statement -> compoundStatement .)
+    RETURN          reduce using rule 30 (statement -> compoundStatement .)
+    EXIT            reduce using rule 30 (statement -> compoundStatement .)
+    LBRACE          reduce using rule 30 (statement -> compoundStatement .)
+    IDENTIFIER      reduce using rule 30 (statement -> compoundStatement .)
+
+
+state 29
+
+    (31) statement -> callStatement .
+
+    RBRACE          reduce using rule 31 (statement -> callStatement .)
+    IF              reduce using rule 31 (statement -> callStatement .)
+    WHILE           reduce using rule 31 (statement -> callStatement .)
+    READ            reduce using rule 31 (statement -> callStatement .)
+    WRITE           reduce using rule 31 (statement -> callStatement .)
+    RETURN          reduce using rule 31 (statement -> callStatement .)
+    EXIT            reduce using rule 31 (statement -> callStatement .)
+    LBRACE          reduce using rule 31 (statement -> callStatement .)
+    IDENTIFIER      reduce using rule 31 (statement -> callStatement .)
+
+
+state 30
+
+    (34) assignment -> variable_def . ASSIGN expr SEMICOLON
+
+    ASSIGN          shift and go to state 49
+
+
+state 31
+
+    (37) ifStatement -> IF . testAndThen ELSE compoundStatement
+    (38) ifStatement -> IF . testAndThen
+    (39) testAndThen -> . test compoundStatement
+    (40) test -> . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 52
+
+    testAndThen                    shift and go to state 50
+    test                           shift and go to state 51
+
+state 32
+
+    (41) whileStatement -> WHILE . whileExpr statement
+    (42) whileExpr -> . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 54
+
+    whileExpr                      shift and go to state 53
+
+state 33
+
+    (43) ioStatement -> READ . LPAREN variable_def RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 55
+
+
+state 34
+
+    (44) ioStatement -> WRITE . LPAREN expr RPAREN SEMICOLON
+    (45) ioStatement -> WRITE . LPAREN stringConstant RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 56
+
+
+state 35
+
+    (46) returnStatement -> RETURN . expr SEMICOLON
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 57
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 36
+
+    (47) exitStatement -> EXIT . SEMICOLON
+
+    SEMICOLON       shift and go to state 70
+
+
+state 37
+
+    (48) compoundStatement -> LBRACE . statementList RBRACE
+    (49) statementList -> . statement
+    (50) statementList -> . statementList statement
+    (24) statement -> . assignment
+    (25) statement -> . ifStatement
+    (26) statement -> . whileStatement
+    (27) statement -> . ioStatement
+    (28) statement -> . returnStatement
+    (29) statement -> . exitStatement
+    (30) statement -> . compoundStatement
+    (31) statement -> . callStatement
+    (34) assignment -> . variable_def ASSIGN expr SEMICOLON
+    (37) ifStatement -> . IF testAndThen ELSE compoundStatement
+    (38) ifStatement -> . IF testAndThen
+    (41) whileStatement -> . WHILE whileExpr statement
+    (43) ioStatement -> . READ LPAREN variable_def RPAREN SEMICOLON
+    (44) ioStatement -> . WRITE LPAREN expr RPAREN SEMICOLON
+    (45) ioStatement -> . WRITE LPAREN stringConstant RPAREN SEMICOLON
+    (46) returnStatement -> . RETURN expr SEMICOLON
+    (47) exitStatement -> . EXIT SEMICOLON
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+    (32) callStatement -> . IDENTIFIER LPAREN RPAREN SEMICOLON
+    (33) callStatement -> . IDENTIFIER LPAREN argList RPAREN SEMICOLON
+    (35) variable_def -> . IDENTIFIER
+    (36) variable_def -> . IDENTIFIER LBRACKET expr RBRACKET
+
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    READ            shift and go to state 33
+    WRITE           shift and go to state 34
+    RETURN          shift and go to state 35
+    EXIT            shift and go to state 36
+    LBRACE          shift and go to state 37
+    IDENTIFIER      shift and go to state 38
+
+    statementList                  shift and go to state 71
+    statement                      shift and go to state 21
+    assignment                     shift and go to state 22
+    ifStatement                    shift and go to state 23
+    whileStatement                 shift and go to state 24
+    ioStatement                    shift and go to state 25
+    returnStatement                shift and go to state 26
+    exitStatement                  shift and go to state 27
+    compoundStatement              shift and go to state 28
+    callStatement                  shift and go to state 29
+    variable_def                   shift and go to state 30
+
+state 38
+
+    (32) callStatement -> IDENTIFIER . LPAREN RPAREN SEMICOLON
+    (33) callStatement -> IDENTIFIER . LPAREN argList RPAREN SEMICOLON
+    (35) variable_def -> IDENTIFIER .
+    (36) variable_def -> IDENTIFIER . LBRACKET expr RBRACKET
+
+    LPAREN          shift and go to state 72
+    ASSIGN          reduce using rule 35 (variable_def -> IDENTIFIER .)
+    LBRACKET        shift and go to state 73
+
+
+state 39
+
+    (8) procedureHead -> functionDecl declList .
+    (6) declList -> declList . type identifierList SEMICOLON
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+
+    IF              reduce using rule 8 (procedureHead -> functionDecl declList .)
+    WHILE           reduce using rule 8 (procedureHead -> functionDecl declList .)
+    READ            reduce using rule 8 (procedureHead -> functionDecl declList .)
+    WRITE           reduce using rule 8 (procedureHead -> functionDecl declList .)
+    RETURN          reduce using rule 8 (procedureHead -> functionDecl declList .)
+    EXIT            reduce using rule 8 (procedureHead -> functionDecl declList .)
+    LBRACE          reduce using rule 8 (procedureHead -> functionDecl declList .)
+    IDENTIFIER      reduce using rule 8 (procedureHead -> functionDecl declList .)
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    type                           shift and go to state 74
+
+state 40
+
+    (5) declList -> type . identifierList SEMICOLON
+    (15) identifierList -> . varDecl
+    (16) identifierList -> . identifierList COMMA varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 75
+
+    identifierList                 shift and go to state 16
+    varDecl                        shift and go to state 18
+
+state 41
+
+    (10) functionDecl -> type IDENTIFIER . LPAREN paramDeclList RPAREN LBRACE
+    (11) functionDecl -> type IDENTIFIER . LPAREN RPAREN LBRACE
+
+    LPAREN          shift and go to state 45
+
+
+state 42
+
+    (6) declList -> declList type identifierList . SEMICOLON
+    (16) identifierList -> identifierList . COMMA varDecl
+
+    SEMICOLON       shift and go to state 76
+    COMMA           shift and go to state 44
+
+
+state 43
+
+    (5) declList -> type identifierList SEMICOLON .
+
+    CHAR            reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    INT             reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    FLOAT           reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    VOID            reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    IF              reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    WHILE           reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    READ            reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    WRITE           reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    RETURN          reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    EXIT            reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    LBRACE          reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+    IDENTIFIER      reduce using rule 5 (declList -> type identifierList SEMICOLON .)
+
+
+state 44
+
+    (16) identifierList -> identifierList COMMA . varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 75
+
+    varDecl                        shift and go to state 77
+
+state 45
+
+    (10) functionDecl -> type IDENTIFIER LPAREN . paramDeclList RPAREN LBRACE
+    (11) functionDecl -> type IDENTIFIER LPAREN . RPAREN LBRACE
+    (13) paramDeclList -> . type varDecl
+    (14) paramDeclList -> . paramDeclList COMMA type varDecl
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+
+    RPAREN          shift and go to state 80
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    type                           shift and go to state 78
+    paramDeclList                  shift and go to state 79
+
+state 46
+
+    (18) varDecl -> IDENTIFIER LBRACKET . INTCON RBRACKET
+    (19) varDecl -> IDENTIFIER LBRACKET . CHARCON RBRACKET
+
+    INTCON          shift and go to state 81
+    CHARCON         shift and go to state 82
+
+
+state 47
+
+    (12) procedureBody -> statementList RBRACE .
+
+    CHAR            reduce using rule 12 (procedureBody -> statementList RBRACE .)
+    INT             reduce using rule 12 (procedureBody -> statementList RBRACE .)
+    FLOAT           reduce using rule 12 (procedureBody -> statementList RBRACE .)
+    VOID            reduce using rule 12 (procedureBody -> statementList RBRACE .)
+    $end            reduce using rule 12 (procedureBody -> statementList RBRACE .)
+
+
+state 48
+
+    (50) statementList -> statementList statement .
+
+    RBRACE          reduce using rule 50 (statementList -> statementList statement .)
+    IF              reduce using rule 50 (statementList -> statementList statement .)
+    WHILE           reduce using rule 50 (statementList -> statementList statement .)
+    READ            reduce using rule 50 (statementList -> statementList statement .)
+    WRITE           reduce using rule 50 (statementList -> statementList statement .)
+    RETURN          reduce using rule 50 (statementList -> statementList statement .)
+    EXIT            reduce using rule 50 (statementList -> statementList statement .)
+    LBRACE          reduce using rule 50 (statementList -> statementList statement .)
+    IDENTIFIER      reduce using rule 50 (statementList -> statementList statement .)
+
+
+state 49
+
+    (34) assignment -> variable_def ASSIGN . expr SEMICOLON
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 83
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 50
+
+    (37) ifStatement -> IF testAndThen . ELSE compoundStatement
+    (38) ifStatement -> IF testAndThen .
+
+    ELSE            shift and go to state 84
+    RBRACE          reduce using rule 38 (ifStatement -> IF testAndThen .)
+    IF              reduce using rule 38 (ifStatement -> IF testAndThen .)
+    WHILE           reduce using rule 38 (ifStatement -> IF testAndThen .)
+    READ            reduce using rule 38 (ifStatement -> IF testAndThen .)
+    WRITE           reduce using rule 38 (ifStatement -> IF testAndThen .)
+    RETURN          reduce using rule 38 (ifStatement -> IF testAndThen .)
+    EXIT            reduce using rule 38 (ifStatement -> IF testAndThen .)
+    LBRACE          reduce using rule 38 (ifStatement -> IF testAndThen .)
+    IDENTIFIER      reduce using rule 38 (ifStatement -> IF testAndThen .)
+
+
+state 51
+
+    (39) testAndThen -> test . compoundStatement
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+
+    LBRACE          shift and go to state 37
+
+    compoundStatement              shift and go to state 85
+
+state 52
+
+    (40) test -> LPAREN . expr RPAREN
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 86
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 53
+
+    (41) whileStatement -> WHILE whileExpr . statement
+    (24) statement -> . assignment
+    (25) statement -> . ifStatement
+    (26) statement -> . whileStatement
+    (27) statement -> . ioStatement
+    (28) statement -> . returnStatement
+    (29) statement -> . exitStatement
+    (30) statement -> . compoundStatement
+    (31) statement -> . callStatement
+    (34) assignment -> . variable_def ASSIGN expr SEMICOLON
+    (37) ifStatement -> . IF testAndThen ELSE compoundStatement
+    (38) ifStatement -> . IF testAndThen
+    (41) whileStatement -> . WHILE whileExpr statement
+    (43) ioStatement -> . READ LPAREN variable_def RPAREN SEMICOLON
+    (44) ioStatement -> . WRITE LPAREN expr RPAREN SEMICOLON
+    (45) ioStatement -> . WRITE LPAREN stringConstant RPAREN SEMICOLON
+    (46) returnStatement -> . RETURN expr SEMICOLON
+    (47) exitStatement -> . EXIT SEMICOLON
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+    (32) callStatement -> . IDENTIFIER LPAREN RPAREN SEMICOLON
+    (33) callStatement -> . IDENTIFIER LPAREN argList RPAREN SEMICOLON
+    (35) variable_def -> . IDENTIFIER
+    (36) variable_def -> . IDENTIFIER LBRACKET expr RBRACKET
+
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    READ            shift and go to state 33
+    WRITE           shift and go to state 34
+    RETURN          shift and go to state 35
+    EXIT            shift and go to state 36
+    LBRACE          shift and go to state 37
+    IDENTIFIER      shift and go to state 38
+
+    statement                      shift and go to state 87
+    assignment                     shift and go to state 22
+    ifStatement                    shift and go to state 23
+    whileStatement                 shift and go to state 24
+    ioStatement                    shift and go to state 25
+    returnStatement                shift and go to state 26
+    exitStatement                  shift and go to state 27
+    compoundStatement              shift and go to state 28
+    callStatement                  shift and go to state 29
+    variable_def                   shift and go to state 30
+
+state 54
+
+    (42) whileExpr -> LPAREN . expr RPAREN
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 88
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 55
+
+    (43) ioStatement -> READ LPAREN . variable_def RPAREN SEMICOLON
+    (35) variable_def -> . IDENTIFIER
+    (36) variable_def -> . IDENTIFIER LBRACKET expr RBRACKET
+
+    IDENTIFIER      shift and go to state 90
+
+    variable_def                   shift and go to state 89
+
+state 56
+
+    (44) ioStatement -> WRITE LPAREN . expr RPAREN SEMICOLON
+    (45) ioStatement -> WRITE LPAREN . stringConstant RPAREN SEMICOLON
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (75) stringConstant -> . STRING
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    STRING          shift and go to state 93
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 91
+    stringConstant                 shift and go to state 92
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 57
+
+    (46) returnStatement -> RETURN expr . SEMICOLON
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    SEMICOLON       shift and go to state 94
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 58
+
+    (51) expr -> simpleExpr .
+    (56) simpleExpr -> simpleExpr . EQ addExpr
+    (57) simpleExpr -> simpleExpr . NE addExpr
+    (58) simpleExpr -> simpleExpr . LE addExpr
+    (59) simpleExpr -> simpleExpr . LT addExpr
+    (60) simpleExpr -> simpleExpr . GE addExpr
+    (61) simpleExpr -> simpleExpr . GT addExpr
+
+    SEMICOLON       reduce using rule 51 (expr -> simpleExpr .)
+    OR              reduce using rule 51 (expr -> simpleExpr .)
+    AND             reduce using rule 51 (expr -> simpleExpr .)
+    RPAREN          reduce using rule 51 (expr -> simpleExpr .)
+    COMMA           reduce using rule 51 (expr -> simpleExpr .)
+    RBRACKET        reduce using rule 51 (expr -> simpleExpr .)
+    EQ              shift and go to state 97
+    NE              shift and go to state 98
+    LE              shift and go to state 99
+    LT              shift and go to state 100
+    GE              shift and go to state 101
+    GT              shift and go to state 102
+
+
+state 59
+
+    (54) expr -> NOT . simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    simpleExpr                     shift and go to state 103
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 60
+
+    (55) simpleExpr -> addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 55 (simpleExpr -> addExpr .)
+    NE              reduce using rule 55 (simpleExpr -> addExpr .)
+    LE              reduce using rule 55 (simpleExpr -> addExpr .)
+    LT              reduce using rule 55 (simpleExpr -> addExpr .)
+    GE              reduce using rule 55 (simpleExpr -> addExpr .)
+    GT              reduce using rule 55 (simpleExpr -> addExpr .)
+    SEMICOLON       reduce using rule 55 (simpleExpr -> addExpr .)
+    OR              reduce using rule 55 (simpleExpr -> addExpr .)
+    AND             reduce using rule 55 (simpleExpr -> addExpr .)
+    RPAREN          reduce using rule 55 (simpleExpr -> addExpr .)
+    COMMA           reduce using rule 55 (simpleExpr -> addExpr .)
+    RBRACKET        reduce using rule 55 (simpleExpr -> addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 61
+
+    (62) addExpr -> mulExpr .
+    (66) mulExpr -> mulExpr . TIMES factor
+    (67) mulExpr -> mulExpr . DIVIDE factor
+
+    PLUS            reduce using rule 62 (addExpr -> mulExpr .)
+    MINUS           reduce using rule 62 (addExpr -> mulExpr .)
+    EQ              reduce using rule 62 (addExpr -> mulExpr .)
+    NE              reduce using rule 62 (addExpr -> mulExpr .)
+    LE              reduce using rule 62 (addExpr -> mulExpr .)
+    LT              reduce using rule 62 (addExpr -> mulExpr .)
+    GE              reduce using rule 62 (addExpr -> mulExpr .)
+    GT              reduce using rule 62 (addExpr -> mulExpr .)
+    SEMICOLON       reduce using rule 62 (addExpr -> mulExpr .)
+    OR              reduce using rule 62 (addExpr -> mulExpr .)
+    AND             reduce using rule 62 (addExpr -> mulExpr .)
+    RPAREN          reduce using rule 62 (addExpr -> mulExpr .)
+    COMMA           reduce using rule 62 (addExpr -> mulExpr .)
+    RBRACKET        reduce using rule 62 (addExpr -> mulExpr .)
+    TIMES           shift and go to state 106
+    DIVIDE          shift and go to state 107
+
+
+state 62
+
+    (65) mulExpr -> factor .
+
+    TIMES           reduce using rule 65 (mulExpr -> factor .)
+    DIVIDE          reduce using rule 65 (mulExpr -> factor .)
+    PLUS            reduce using rule 65 (mulExpr -> factor .)
+    MINUS           reduce using rule 65 (mulExpr -> factor .)
+    EQ              reduce using rule 65 (mulExpr -> factor .)
+    NE              reduce using rule 65 (mulExpr -> factor .)
+    LE              reduce using rule 65 (mulExpr -> factor .)
+    LT              reduce using rule 65 (mulExpr -> factor .)
+    GE              reduce using rule 65 (mulExpr -> factor .)
+    GT              reduce using rule 65 (mulExpr -> factor .)
+    SEMICOLON       reduce using rule 65 (mulExpr -> factor .)
+    OR              reduce using rule 65 (mulExpr -> factor .)
+    AND             reduce using rule 65 (mulExpr -> factor .)
+    RPAREN          reduce using rule 65 (mulExpr -> factor .)
+    COMMA           reduce using rule 65 (mulExpr -> factor .)
+    RBRACKET        reduce using rule 65 (mulExpr -> factor .)
+
+
+state 63
+
+    (68) factor -> variable .
+
+    TIMES           reduce using rule 68 (factor -> variable .)
+    DIVIDE          reduce using rule 68 (factor -> variable .)
+    PLUS            reduce using rule 68 (factor -> variable .)
+    MINUS           reduce using rule 68 (factor -> variable .)
+    EQ              reduce using rule 68 (factor -> variable .)
+    NE              reduce using rule 68 (factor -> variable .)
+    LE              reduce using rule 68 (factor -> variable .)
+    LT              reduce using rule 68 (factor -> variable .)
+    GE              reduce using rule 68 (factor -> variable .)
+    GT              reduce using rule 68 (factor -> variable .)
+    SEMICOLON       reduce using rule 68 (factor -> variable .)
+    OR              reduce using rule 68 (factor -> variable .)
+    AND             reduce using rule 68 (factor -> variable .)
+    RPAREN          reduce using rule 68 (factor -> variable .)
+    COMMA           reduce using rule 68 (factor -> variable .)
+    RBRACKET        reduce using rule 68 (factor -> variable .)
+
+
+state 64
+
+    (69) factor -> constant .
+
+    TIMES           reduce using rule 69 (factor -> constant .)
+    DIVIDE          reduce using rule 69 (factor -> constant .)
+    PLUS            reduce using rule 69 (factor -> constant .)
+    MINUS           reduce using rule 69 (factor -> constant .)
+    EQ              reduce using rule 69 (factor -> constant .)
+    NE              reduce using rule 69 (factor -> constant .)
+    LE              reduce using rule 69 (factor -> constant .)
+    LT              reduce using rule 69 (factor -> constant .)
+    GE              reduce using rule 69 (factor -> constant .)
+    GT              reduce using rule 69 (factor -> constant .)
+    SEMICOLON       reduce using rule 69 (factor -> constant .)
+    OR              reduce using rule 69 (factor -> constant .)
+    AND             reduce using rule 69 (factor -> constant .)
+    RPAREN          reduce using rule 69 (factor -> constant .)
+    COMMA           reduce using rule 69 (factor -> constant .)
+    RBRACKET        reduce using rule 69 (factor -> constant .)
+
+
+state 65
+
+    (70) factor -> IDENTIFIER . LPAREN RPAREN
+    (71) factor -> IDENTIFIER . LPAREN argList RPAREN
+    (73) variable -> IDENTIFIER .
+    (74) variable -> IDENTIFIER . LBRACKET expr RBRACKET
+
+    LPAREN          shift and go to state 108
+    TIMES           reduce using rule 73 (variable -> IDENTIFIER .)
+    DIVIDE          reduce using rule 73 (variable -> IDENTIFIER .)
+    PLUS            reduce using rule 73 (variable -> IDENTIFIER .)
+    MINUS           reduce using rule 73 (variable -> IDENTIFIER .)
+    EQ              reduce using rule 73 (variable -> IDENTIFIER .)
+    NE              reduce using rule 73 (variable -> IDENTIFIER .)
+    LE              reduce using rule 73 (variable -> IDENTIFIER .)
+    LT              reduce using rule 73 (variable -> IDENTIFIER .)
+    GE              reduce using rule 73 (variable -> IDENTIFIER .)
+    GT              reduce using rule 73 (variable -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 73 (variable -> IDENTIFIER .)
+    OR              reduce using rule 73 (variable -> IDENTIFIER .)
+    AND             reduce using rule 73 (variable -> IDENTIFIER .)
+    RPAREN          reduce using rule 73 (variable -> IDENTIFIER .)
+    COMMA           reduce using rule 73 (variable -> IDENTIFIER .)
+    RBRACKET        reduce using rule 73 (variable -> IDENTIFIER .)
+    LBRACKET        shift and go to state 109
+
+
+state 66
+
+    (72) factor -> LPAREN . expr RPAREN
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 110
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 67
+
+    (76) constant -> FLOATCON .
+
+    TIMES           reduce using rule 76 (constant -> FLOATCON .)
+    DIVIDE          reduce using rule 76 (constant -> FLOATCON .)
+    PLUS            reduce using rule 76 (constant -> FLOATCON .)
+    MINUS           reduce using rule 76 (constant -> FLOATCON .)
+    EQ              reduce using rule 76 (constant -> FLOATCON .)
+    NE              reduce using rule 76 (constant -> FLOATCON .)
+    LE              reduce using rule 76 (constant -> FLOATCON .)
+    LT              reduce using rule 76 (constant -> FLOATCON .)
+    GE              reduce using rule 76 (constant -> FLOATCON .)
+    GT              reduce using rule 76 (constant -> FLOATCON .)
+    SEMICOLON       reduce using rule 76 (constant -> FLOATCON .)
+    OR              reduce using rule 76 (constant -> FLOATCON .)
+    AND             reduce using rule 76 (constant -> FLOATCON .)
+    RPAREN          reduce using rule 76 (constant -> FLOATCON .)
+    COMMA           reduce using rule 76 (constant -> FLOATCON .)
+    RBRACKET        reduce using rule 76 (constant -> FLOATCON .)
+
+
+state 68
+
+    (77) constant -> INTCON .
+
+    TIMES           reduce using rule 77 (constant -> INTCON .)
+    DIVIDE          reduce using rule 77 (constant -> INTCON .)
+    PLUS            reduce using rule 77 (constant -> INTCON .)
+    MINUS           reduce using rule 77 (constant -> INTCON .)
+    EQ              reduce using rule 77 (constant -> INTCON .)
+    NE              reduce using rule 77 (constant -> INTCON .)
+    LE              reduce using rule 77 (constant -> INTCON .)
+    LT              reduce using rule 77 (constant -> INTCON .)
+    GE              reduce using rule 77 (constant -> INTCON .)
+    GT              reduce using rule 77 (constant -> INTCON .)
+    SEMICOLON       reduce using rule 77 (constant -> INTCON .)
+    OR              reduce using rule 77 (constant -> INTCON .)
+    AND             reduce using rule 77 (constant -> INTCON .)
+    RPAREN          reduce using rule 77 (constant -> INTCON .)
+    COMMA           reduce using rule 77 (constant -> INTCON .)
+    RBRACKET        reduce using rule 77 (constant -> INTCON .)
+
+
+state 69
+
+    (78) constant -> CHARCON .
+
+    TIMES           reduce using rule 78 (constant -> CHARCON .)
+    DIVIDE          reduce using rule 78 (constant -> CHARCON .)
+    PLUS            reduce using rule 78 (constant -> CHARCON .)
+    MINUS           reduce using rule 78 (constant -> CHARCON .)
+    EQ              reduce using rule 78 (constant -> CHARCON .)
+    NE              reduce using rule 78 (constant -> CHARCON .)
+    LE              reduce using rule 78 (constant -> CHARCON .)
+    LT              reduce using rule 78 (constant -> CHARCON .)
+    GE              reduce using rule 78 (constant -> CHARCON .)
+    GT              reduce using rule 78 (constant -> CHARCON .)
+    SEMICOLON       reduce using rule 78 (constant -> CHARCON .)
+    OR              reduce using rule 78 (constant -> CHARCON .)
+    AND             reduce using rule 78 (constant -> CHARCON .)
+    RPAREN          reduce using rule 78 (constant -> CHARCON .)
+    COMMA           reduce using rule 78 (constant -> CHARCON .)
+    RBRACKET        reduce using rule 78 (constant -> CHARCON .)
+
+
+state 70
+
+    (47) exitStatement -> EXIT SEMICOLON .
+
+    RBRACE          reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    IF              reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    WHILE           reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    READ            reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    WRITE           reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    RETURN          reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    EXIT            reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    LBRACE          reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+    IDENTIFIER      reduce using rule 47 (exitStatement -> EXIT SEMICOLON .)
+
+
+state 71
+
+    (48) compoundStatement -> LBRACE statementList . RBRACE
+    (50) statementList -> statementList . statement
+    (24) statement -> . assignment
+    (25) statement -> . ifStatement
+    (26) statement -> . whileStatement
+    (27) statement -> . ioStatement
+    (28) statement -> . returnStatement
+    (29) statement -> . exitStatement
+    (30) statement -> . compoundStatement
+    (31) statement -> . callStatement
+    (34) assignment -> . variable_def ASSIGN expr SEMICOLON
+    (37) ifStatement -> . IF testAndThen ELSE compoundStatement
+    (38) ifStatement -> . IF testAndThen
+    (41) whileStatement -> . WHILE whileExpr statement
+    (43) ioStatement -> . READ LPAREN variable_def RPAREN SEMICOLON
+    (44) ioStatement -> . WRITE LPAREN expr RPAREN SEMICOLON
+    (45) ioStatement -> . WRITE LPAREN stringConstant RPAREN SEMICOLON
+    (46) returnStatement -> . RETURN expr SEMICOLON
+    (47) exitStatement -> . EXIT SEMICOLON
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+    (32) callStatement -> . IDENTIFIER LPAREN RPAREN SEMICOLON
+    (33) callStatement -> . IDENTIFIER LPAREN argList RPAREN SEMICOLON
+    (35) variable_def -> . IDENTIFIER
+    (36) variable_def -> . IDENTIFIER LBRACKET expr RBRACKET
+
+    RBRACE          shift and go to state 111
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    READ            shift and go to state 33
+    WRITE           shift and go to state 34
+    RETURN          shift and go to state 35
+    EXIT            shift and go to state 36
+    LBRACE          shift and go to state 37
+    IDENTIFIER      shift and go to state 38
+
+    statement                      shift and go to state 48
+    assignment                     shift and go to state 22
+    ifStatement                    shift and go to state 23
+    whileStatement                 shift and go to state 24
+    ioStatement                    shift and go to state 25
+    returnStatement                shift and go to state 26
+    exitStatement                  shift and go to state 27
+    compoundStatement              shift and go to state 28
+    callStatement                  shift and go to state 29
+    variable_def                   shift and go to state 30
+
+state 72
+
+    (32) callStatement -> IDENTIFIER LPAREN . RPAREN SEMICOLON
+    (33) callStatement -> IDENTIFIER LPAREN . argList RPAREN SEMICOLON
+    (79) argList -> . expr
+    (80) argList -> . argList COMMA expr
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    RPAREN          shift and go to state 112
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    argList                        shift and go to state 113
+    expr                           shift and go to state 114
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 73
+
+    (36) variable_def -> IDENTIFIER LBRACKET . expr RBRACKET
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 115
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 74
+
+    (6) declList -> declList type . identifierList SEMICOLON
+    (15) identifierList -> . varDecl
+    (16) identifierList -> . identifierList COMMA varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 75
+
+    identifierList                 shift and go to state 42
+    varDecl                        shift and go to state 18
+
+state 75
+
+    (17) varDecl -> IDENTIFIER .
+    (18) varDecl -> IDENTIFIER . LBRACKET INTCON RBRACKET
+    (19) varDecl -> IDENTIFIER . LBRACKET CHARCON RBRACKET
+
+    SEMICOLON       reduce using rule 17 (varDecl -> IDENTIFIER .)
+    COMMA           reduce using rule 17 (varDecl -> IDENTIFIER .)
+    RPAREN          reduce using rule 17 (varDecl -> IDENTIFIER .)
+    LBRACKET        shift and go to state 46
+
+
+state 76
+
+    (6) declList -> declList type identifierList SEMICOLON .
+
+    CHAR            reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    INT             reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    FLOAT           reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    VOID            reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    IF              reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    WHILE           reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    READ            reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    WRITE           reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    RETURN          reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    EXIT            reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    LBRACE          reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+    IDENTIFIER      reduce using rule 6 (declList -> declList type identifierList SEMICOLON .)
+
+
+state 77
+
+    (16) identifierList -> identifierList COMMA varDecl .
+
+    SEMICOLON       reduce using rule 16 (identifierList -> identifierList COMMA varDecl .)
+    COMMA           reduce using rule 16 (identifierList -> identifierList COMMA varDecl .)
+
+
+state 78
+
+    (13) paramDeclList -> type . varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 75
+
+    varDecl                        shift and go to state 116
+
+state 79
+
+    (10) functionDecl -> type IDENTIFIER LPAREN paramDeclList . RPAREN LBRACE
+    (14) paramDeclList -> paramDeclList . COMMA type varDecl
+
+    RPAREN          shift and go to state 117
+    COMMA           shift and go to state 118
+
+
+state 80
+
+    (11) functionDecl -> type IDENTIFIER LPAREN RPAREN . LBRACE
+
+    LBRACE          shift and go to state 119
+
+
+state 81
+
+    (18) varDecl -> IDENTIFIER LBRACKET INTCON . RBRACKET
+
+    RBRACKET        shift and go to state 120
+
+
+state 82
+
+    (19) varDecl -> IDENTIFIER LBRACKET CHARCON . RBRACKET
+
+    RBRACKET        shift and go to state 121
+
+
+state 83
+
+    (34) assignment -> variable_def ASSIGN expr . SEMICOLON
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    SEMICOLON       shift and go to state 122
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 84
+
+    (37) ifStatement -> IF testAndThen ELSE . compoundStatement
+    (48) compoundStatement -> . LBRACE statementList RBRACE
+
+    LBRACE          shift and go to state 37
+
+    compoundStatement              shift and go to state 123
+
+state 85
+
+    (39) testAndThen -> test compoundStatement .
+
+    ELSE            reduce using rule 39 (testAndThen -> test compoundStatement .)
+    RBRACE          reduce using rule 39 (testAndThen -> test compoundStatement .)
+    IF              reduce using rule 39 (testAndThen -> test compoundStatement .)
+    WHILE           reduce using rule 39 (testAndThen -> test compoundStatement .)
+    READ            reduce using rule 39 (testAndThen -> test compoundStatement .)
+    WRITE           reduce using rule 39 (testAndThen -> test compoundStatement .)
+    RETURN          reduce using rule 39 (testAndThen -> test compoundStatement .)
+    EXIT            reduce using rule 39 (testAndThen -> test compoundStatement .)
+    LBRACE          reduce using rule 39 (testAndThen -> test compoundStatement .)
+    IDENTIFIER      reduce using rule 39 (testAndThen -> test compoundStatement .)
+
+
+state 86
+
+    (40) test -> LPAREN expr . RPAREN
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RPAREN          shift and go to state 124
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 87
+
+    (41) whileStatement -> WHILE whileExpr statement .
+
+    RBRACE          reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    IF              reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    WHILE           reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    READ            reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    WRITE           reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    RETURN          reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    EXIT            reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    LBRACE          reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+    IDENTIFIER      reduce using rule 41 (whileStatement -> WHILE whileExpr statement .)
+
+
+state 88
+
+    (42) whileExpr -> LPAREN expr . RPAREN
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RPAREN          shift and go to state 125
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 89
+
+    (43) ioStatement -> READ LPAREN variable_def . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 126
+
+
+state 90
+
+    (35) variable_def -> IDENTIFIER .
+    (36) variable_def -> IDENTIFIER . LBRACKET expr RBRACKET
+
+    RPAREN          reduce using rule 35 (variable_def -> IDENTIFIER .)
+    LBRACKET        shift and go to state 73
+
+
+state 91
+
+    (44) ioStatement -> WRITE LPAREN expr . RPAREN SEMICOLON
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RPAREN          shift and go to state 127
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 92
+
+    (45) ioStatement -> WRITE LPAREN stringConstant . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 128
+
+
+state 93
+
+    (75) stringConstant -> STRING .
+
+    RPAREN          reduce using rule 75 (stringConstant -> STRING .)
+
+
+state 94
+
+    (46) returnStatement -> RETURN expr SEMICOLON .
+
+    RBRACE          reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    IF              reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    WHILE           reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    READ            reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    WRITE           reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    RETURN          reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    EXIT            reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    LBRACE          reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+    IDENTIFIER      reduce using rule 46 (returnStatement -> RETURN expr SEMICOLON .)
+
+
+state 95
+
+    (52) expr -> expr OR . simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    simpleExpr                     shift and go to state 129
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 96
+
+    (53) expr -> expr AND . simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    simpleExpr                     shift and go to state 130
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 97
+
+    (56) simpleExpr -> simpleExpr EQ . addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    addExpr                        shift and go to state 131
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 98
+
+    (57) simpleExpr -> simpleExpr NE . addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    addExpr                        shift and go to state 132
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 99
+
+    (58) simpleExpr -> simpleExpr LE . addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    addExpr                        shift and go to state 133
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 100
+
+    (59) simpleExpr -> simpleExpr LT . addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    addExpr                        shift and go to state 134
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 101
+
+    (60) simpleExpr -> simpleExpr GE . addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    addExpr                        shift and go to state 135
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 102
+
+    (61) simpleExpr -> simpleExpr GT . addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    addExpr                        shift and go to state 136
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 103
+
+    (54) expr -> NOT simpleExpr .
+    (56) simpleExpr -> simpleExpr . EQ addExpr
+    (57) simpleExpr -> simpleExpr . NE addExpr
+    (58) simpleExpr -> simpleExpr . LE addExpr
+    (59) simpleExpr -> simpleExpr . LT addExpr
+    (60) simpleExpr -> simpleExpr . GE addExpr
+    (61) simpleExpr -> simpleExpr . GT addExpr
+
+    SEMICOLON       reduce using rule 54 (expr -> NOT simpleExpr .)
+    OR              reduce using rule 54 (expr -> NOT simpleExpr .)
+    AND             reduce using rule 54 (expr -> NOT simpleExpr .)
+    RPAREN          reduce using rule 54 (expr -> NOT simpleExpr .)
+    COMMA           reduce using rule 54 (expr -> NOT simpleExpr .)
+    RBRACKET        reduce using rule 54 (expr -> NOT simpleExpr .)
+    EQ              shift and go to state 97
+    NE              shift and go to state 98
+    LE              shift and go to state 99
+    LT              shift and go to state 100
+    GE              shift and go to state 101
+    GT              shift and go to state 102
+
+
+state 104
+
+    (63) addExpr -> addExpr PLUS . mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    mulExpr                        shift and go to state 137
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 105
+
+    (64) addExpr -> addExpr MINUS . mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    mulExpr                        shift and go to state 138
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 106
+
+    (66) mulExpr -> mulExpr TIMES . factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    factor                         shift and go to state 139
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 107
+
+    (67) mulExpr -> mulExpr DIVIDE . factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    factor                         shift and go to state 140
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 108
+
+    (70) factor -> IDENTIFIER LPAREN . RPAREN
+    (71) factor -> IDENTIFIER LPAREN . argList RPAREN
+    (79) argList -> . expr
+    (80) argList -> . argList COMMA expr
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    RPAREN          shift and go to state 141
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    argList                        shift and go to state 142
+    expr                           shift and go to state 114
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 109
+
+    (74) variable -> IDENTIFIER LBRACKET . expr RBRACKET
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 143
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 110
+
+    (72) factor -> LPAREN expr . RPAREN
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RPAREN          shift and go to state 144
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 111
+
+    (48) compoundStatement -> LBRACE statementList RBRACE .
+
+    RBRACE          reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    IF              reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    WHILE           reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    READ            reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    WRITE           reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    RETURN          reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    EXIT            reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    LBRACE          reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    IDENTIFIER      reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+    ELSE            reduce using rule 48 (compoundStatement -> LBRACE statementList RBRACE .)
+
+
+state 112
+
+    (32) callStatement -> IDENTIFIER LPAREN RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 145
+
+
+state 113
+
+    (33) callStatement -> IDENTIFIER LPAREN argList . RPAREN SEMICOLON
+    (80) argList -> argList . COMMA expr
+
+    RPAREN          shift and go to state 146
+    COMMA           shift and go to state 147
+
+
+state 114
+
+    (79) argList -> expr .
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RPAREN          reduce using rule 79 (argList -> expr .)
+    COMMA           reduce using rule 79 (argList -> expr .)
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 115
+
+    (36) variable_def -> IDENTIFIER LBRACKET expr . RBRACKET
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RBRACKET        shift and go to state 148
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 116
+
+    (13) paramDeclList -> type varDecl .
+
+    RPAREN          reduce using rule 13 (paramDeclList -> type varDecl .)
+    COMMA           reduce using rule 13 (paramDeclList -> type varDecl .)
+
+
+state 117
+
+    (10) functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN . LBRACE
+
+    LBRACE          shift and go to state 149
+
+
+state 118
+
+    (14) paramDeclList -> paramDeclList COMMA . type varDecl
+    (20) type -> . CHAR
+    (21) type -> . INT
+    (22) type -> . FLOAT
+    (23) type -> . VOID
+
+    CHAR            shift and go to state 7
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    VOID            shift and go to state 10
+
+    type                           shift and go to state 150
+
+state 119
+
+    (11) functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .
+
+    CHAR            reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    INT             reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    FLOAT           reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    VOID            reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    IF              reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    WHILE           reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    READ            reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    WRITE           reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    RETURN          reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    EXIT            reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    LBRACE          reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+    IDENTIFIER      reduce using rule 11 (functionDecl -> type IDENTIFIER LPAREN RPAREN LBRACE .)
+
+
+state 120
+
+    (18) varDecl -> IDENTIFIER LBRACKET INTCON RBRACKET .
+
+    SEMICOLON       reduce using rule 18 (varDecl -> IDENTIFIER LBRACKET INTCON RBRACKET .)
+    COMMA           reduce using rule 18 (varDecl -> IDENTIFIER LBRACKET INTCON RBRACKET .)
+    RPAREN          reduce using rule 18 (varDecl -> IDENTIFIER LBRACKET INTCON RBRACKET .)
+
+
+state 121
+
+    (19) varDecl -> IDENTIFIER LBRACKET CHARCON RBRACKET .
+
+    SEMICOLON       reduce using rule 19 (varDecl -> IDENTIFIER LBRACKET CHARCON RBRACKET .)
+    COMMA           reduce using rule 19 (varDecl -> IDENTIFIER LBRACKET CHARCON RBRACKET .)
+    RPAREN          reduce using rule 19 (varDecl -> IDENTIFIER LBRACKET CHARCON RBRACKET .)
+
+
+state 122
+
+    (34) assignment -> variable_def ASSIGN expr SEMICOLON .
+
+    RBRACE          reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    IF              reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    WHILE           reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    READ            reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    WRITE           reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    RETURN          reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    EXIT            reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    LBRACE          reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+    IDENTIFIER      reduce using rule 34 (assignment -> variable_def ASSIGN expr SEMICOLON .)
+
+
+state 123
+
+    (37) ifStatement -> IF testAndThen ELSE compoundStatement .
+
+    RBRACE          reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    IF              reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    WHILE           reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    READ            reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    WRITE           reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    RETURN          reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    EXIT            reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    LBRACE          reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+    IDENTIFIER      reduce using rule 37 (ifStatement -> IF testAndThen ELSE compoundStatement .)
+
+
+state 124
+
+    (40) test -> LPAREN expr RPAREN .
+
+    LBRACE          reduce using rule 40 (test -> LPAREN expr RPAREN .)
+
+
+state 125
+
+    (42) whileExpr -> LPAREN expr RPAREN .
+
+    IF              reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    WHILE           reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    READ            reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    WRITE           reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    RETURN          reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    EXIT            reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    LBRACE          reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+    IDENTIFIER      reduce using rule 42 (whileExpr -> LPAREN expr RPAREN .)
+
+
+state 126
+
+    (43) ioStatement -> READ LPAREN variable_def RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 151
+
+
+state 127
+
+    (44) ioStatement -> WRITE LPAREN expr RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 152
+
+
+state 128
+
+    (45) ioStatement -> WRITE LPAREN stringConstant RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 153
+
+
+state 129
+
+    (52) expr -> expr OR simpleExpr .
+    (56) simpleExpr -> simpleExpr . EQ addExpr
+    (57) simpleExpr -> simpleExpr . NE addExpr
+    (58) simpleExpr -> simpleExpr . LE addExpr
+    (59) simpleExpr -> simpleExpr . LT addExpr
+    (60) simpleExpr -> simpleExpr . GE addExpr
+    (61) simpleExpr -> simpleExpr . GT addExpr
+
+    SEMICOLON       reduce using rule 52 (expr -> expr OR simpleExpr .)
+    OR              reduce using rule 52 (expr -> expr OR simpleExpr .)
+    AND             reduce using rule 52 (expr -> expr OR simpleExpr .)
+    RPAREN          reduce using rule 52 (expr -> expr OR simpleExpr .)
+    COMMA           reduce using rule 52 (expr -> expr OR simpleExpr .)
+    RBRACKET        reduce using rule 52 (expr -> expr OR simpleExpr .)
+    EQ              shift and go to state 97
+    NE              shift and go to state 98
+    LE              shift and go to state 99
+    LT              shift and go to state 100
+    GE              shift and go to state 101
+    GT              shift and go to state 102
+
+
+state 130
+
+    (53) expr -> expr AND simpleExpr .
+    (56) simpleExpr -> simpleExpr . EQ addExpr
+    (57) simpleExpr -> simpleExpr . NE addExpr
+    (58) simpleExpr -> simpleExpr . LE addExpr
+    (59) simpleExpr -> simpleExpr . LT addExpr
+    (60) simpleExpr -> simpleExpr . GE addExpr
+    (61) simpleExpr -> simpleExpr . GT addExpr
+
+    SEMICOLON       reduce using rule 53 (expr -> expr AND simpleExpr .)
+    OR              reduce using rule 53 (expr -> expr AND simpleExpr .)
+    AND             reduce using rule 53 (expr -> expr AND simpleExpr .)
+    RPAREN          reduce using rule 53 (expr -> expr AND simpleExpr .)
+    COMMA           reduce using rule 53 (expr -> expr AND simpleExpr .)
+    RBRACKET        reduce using rule 53 (expr -> expr AND simpleExpr .)
+    EQ              shift and go to state 97
+    NE              shift and go to state 98
+    LE              shift and go to state 99
+    LT              shift and go to state 100
+    GE              shift and go to state 101
+    GT              shift and go to state 102
+
+
+state 131
+
+    (56) simpleExpr -> simpleExpr EQ addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    NE              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    LE              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    LT              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    GE              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    GT              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    SEMICOLON       reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    OR              reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    AND             reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    RPAREN          reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    COMMA           reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    RBRACKET        reduce using rule 56 (simpleExpr -> simpleExpr EQ addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 132
+
+    (57) simpleExpr -> simpleExpr NE addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    NE              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    LE              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    LT              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    GE              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    GT              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    SEMICOLON       reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    OR              reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    AND             reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    RPAREN          reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    COMMA           reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    RBRACKET        reduce using rule 57 (simpleExpr -> simpleExpr NE addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 133
+
+    (58) simpleExpr -> simpleExpr LE addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    NE              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    LE              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    LT              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    GE              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    GT              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    SEMICOLON       reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    OR              reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    AND             reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    RPAREN          reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    COMMA           reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    RBRACKET        reduce using rule 58 (simpleExpr -> simpleExpr LE addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 134
+
+    (59) simpleExpr -> simpleExpr LT addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    NE              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    LE              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    LT              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    GE              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    GT              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    SEMICOLON       reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    OR              reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    AND             reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    RPAREN          reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    COMMA           reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    RBRACKET        reduce using rule 59 (simpleExpr -> simpleExpr LT addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 135
+
+    (60) simpleExpr -> simpleExpr GE addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    NE              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    LE              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    LT              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    GE              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    GT              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    SEMICOLON       reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    OR              reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    AND             reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    RPAREN          reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    COMMA           reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    RBRACKET        reduce using rule 60 (simpleExpr -> simpleExpr GE addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 136
+
+    (61) simpleExpr -> simpleExpr GT addExpr .
+    (63) addExpr -> addExpr . PLUS mulExpr
+    (64) addExpr -> addExpr . MINUS mulExpr
+
+    EQ              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    NE              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    LE              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    LT              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    GE              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    GT              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    SEMICOLON       reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    OR              reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    AND             reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    RPAREN          reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    COMMA           reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    RBRACKET        reduce using rule 61 (simpleExpr -> simpleExpr GT addExpr .)
+    PLUS            shift and go to state 104
+    MINUS           shift and go to state 105
+
+
+state 137
+
+    (63) addExpr -> addExpr PLUS mulExpr .
+    (66) mulExpr -> mulExpr . TIMES factor
+    (67) mulExpr -> mulExpr . DIVIDE factor
+
+    PLUS            reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    MINUS           reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    EQ              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    NE              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    LE              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    LT              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    GE              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    GT              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    SEMICOLON       reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    OR              reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    AND             reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    RPAREN          reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    COMMA           reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    RBRACKET        reduce using rule 63 (addExpr -> addExpr PLUS mulExpr .)
+    TIMES           shift and go to state 106
+    DIVIDE          shift and go to state 107
+
+
+state 138
+
+    (64) addExpr -> addExpr MINUS mulExpr .
+    (66) mulExpr -> mulExpr . TIMES factor
+    (67) mulExpr -> mulExpr . DIVIDE factor
+
+    PLUS            reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    MINUS           reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    EQ              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    NE              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    LE              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    LT              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    GE              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    GT              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    SEMICOLON       reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    OR              reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    AND             reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    RPAREN          reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    COMMA           reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    RBRACKET        reduce using rule 64 (addExpr -> addExpr MINUS mulExpr .)
+    TIMES           shift and go to state 106
+    DIVIDE          shift and go to state 107
+
+
+state 139
+
+    (66) mulExpr -> mulExpr TIMES factor .
+
+    TIMES           reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    DIVIDE          reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    PLUS            reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    MINUS           reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    EQ              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    NE              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    LE              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    LT              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    GE              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    GT              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    SEMICOLON       reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    OR              reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    AND             reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    RPAREN          reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    COMMA           reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+    RBRACKET        reduce using rule 66 (mulExpr -> mulExpr TIMES factor .)
+
+
+state 140
+
+    (67) mulExpr -> mulExpr DIVIDE factor .
+
+    TIMES           reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    DIVIDE          reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    PLUS            reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    MINUS           reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    EQ              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    NE              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    LE              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    LT              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    GE              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    GT              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    SEMICOLON       reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    OR              reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    AND             reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    RPAREN          reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    COMMA           reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+    RBRACKET        reduce using rule 67 (mulExpr -> mulExpr DIVIDE factor .)
+
+
+state 141
+
+    (70) factor -> IDENTIFIER LPAREN RPAREN .
+
+    TIMES           reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    DIVIDE          reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    PLUS            reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    MINUS           reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    EQ              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    NE              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    LE              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    LT              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    GE              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    GT              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    SEMICOLON       reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    OR              reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    AND             reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    RPAREN          reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    COMMA           reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+    RBRACKET        reduce using rule 70 (factor -> IDENTIFIER LPAREN RPAREN .)
+
+
+state 142
+
+    (71) factor -> IDENTIFIER LPAREN argList . RPAREN
+    (80) argList -> argList . COMMA expr
+
+    RPAREN          shift and go to state 154
+    COMMA           shift and go to state 147
+
+
+state 143
+
+    (74) variable -> IDENTIFIER LBRACKET expr . RBRACKET
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RBRACKET        shift and go to state 155
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 144
+
+    (72) factor -> LPAREN expr RPAREN .
+
+    TIMES           reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    PLUS            reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    MINUS           reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    EQ              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    NE              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    LE              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    LT              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    GE              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    GT              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    OR              reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    AND             reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    COMMA           reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+    RBRACKET        reduce using rule 72 (factor -> LPAREN expr RPAREN .)
+
+
+state 145
+
+    (32) callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .
+
+    RBRACE          reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    IF              reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    WHILE           reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    READ            reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    WRITE           reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    RETURN          reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    EXIT            reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    LBRACE          reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 32 (callStatement -> IDENTIFIER LPAREN RPAREN SEMICOLON .)
+
+
+state 146
+
+    (33) callStatement -> IDENTIFIER LPAREN argList RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 156
+
+
+state 147
+
+    (80) argList -> argList COMMA . expr
+    (51) expr -> . simpleExpr
+    (52) expr -> . expr OR simpleExpr
+    (53) expr -> . expr AND simpleExpr
+    (54) expr -> . NOT simpleExpr
+    (55) simpleExpr -> . addExpr
+    (56) simpleExpr -> . simpleExpr EQ addExpr
+    (57) simpleExpr -> . simpleExpr NE addExpr
+    (58) simpleExpr -> . simpleExpr LE addExpr
+    (59) simpleExpr -> . simpleExpr LT addExpr
+    (60) simpleExpr -> . simpleExpr GE addExpr
+    (61) simpleExpr -> . simpleExpr GT addExpr
+    (62) addExpr -> . mulExpr
+    (63) addExpr -> . addExpr PLUS mulExpr
+    (64) addExpr -> . addExpr MINUS mulExpr
+    (65) mulExpr -> . factor
+    (66) mulExpr -> . mulExpr TIMES factor
+    (67) mulExpr -> . mulExpr DIVIDE factor
+    (68) factor -> . variable
+    (69) factor -> . constant
+    (70) factor -> . IDENTIFIER LPAREN RPAREN
+    (71) factor -> . IDENTIFIER LPAREN argList RPAREN
+    (72) factor -> . LPAREN expr RPAREN
+    (73) variable -> . IDENTIFIER
+    (74) variable -> . IDENTIFIER LBRACKET expr RBRACKET
+    (76) constant -> . FLOATCON
+    (77) constant -> . INTCON
+    (78) constant -> . CHARCON
+
+    NOT             shift and go to state 59
+    IDENTIFIER      shift and go to state 65
+    LPAREN          shift and go to state 66
+    FLOATCON        shift and go to state 67
+    INTCON          shift and go to state 68
+    CHARCON         shift and go to state 69
+
+    expr                           shift and go to state 157
+    simpleExpr                     shift and go to state 58
+    addExpr                        shift and go to state 60
+    mulExpr                        shift and go to state 61
+    factor                         shift and go to state 62
+    variable                       shift and go to state 63
+    constant                       shift and go to state 64
+
+state 148
+
+    (36) variable_def -> IDENTIFIER LBRACKET expr RBRACKET .
+
+    ASSIGN          reduce using rule 36 (variable_def -> IDENTIFIER LBRACKET expr RBRACKET .)
+    RPAREN          reduce using rule 36 (variable_def -> IDENTIFIER LBRACKET expr RBRACKET .)
+
+
+state 149
+
+    (10) functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .
+
+    CHAR            reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    INT             reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    FLOAT           reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    VOID            reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    IF              reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    WHILE           reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    READ            reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    WRITE           reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    RETURN          reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    EXIT            reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    LBRACE          reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+    IDENTIFIER      reduce using rule 10 (functionDecl -> type IDENTIFIER LPAREN paramDeclList RPAREN LBRACE .)
+
+
+state 150
+
+    (14) paramDeclList -> paramDeclList COMMA type . varDecl
+    (17) varDecl -> . IDENTIFIER
+    (18) varDecl -> . IDENTIFIER LBRACKET INTCON RBRACKET
+    (19) varDecl -> . IDENTIFIER LBRACKET CHARCON RBRACKET
+
+    IDENTIFIER      shift and go to state 75
+
+    varDecl                        shift and go to state 158
+
+state 151
+
+    (43) ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .
+
+    RBRACE          reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    IF              reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    WHILE           reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    READ            reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    WRITE           reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    RETURN          reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    EXIT            reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    LBRACE          reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 43 (ioStatement -> READ LPAREN variable_def RPAREN SEMICOLON .)
+
+
+state 152
+
+    (44) ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .
+
+    RBRACE          reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    IF              reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    WHILE           reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    READ            reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    WRITE           reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    RETURN          reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    EXIT            reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    LBRACE          reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 44 (ioStatement -> WRITE LPAREN expr RPAREN SEMICOLON .)
+
+
+state 153
+
+    (45) ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .
+
+    RBRACE          reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    IF              reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    WHILE           reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    READ            reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    WRITE           reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    RETURN          reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    EXIT            reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    LBRACE          reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 45 (ioStatement -> WRITE LPAREN stringConstant RPAREN SEMICOLON .)
+
+
+state 154
+
+    (71) factor -> IDENTIFIER LPAREN argList RPAREN .
+
+    TIMES           reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    DIVIDE          reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    PLUS            reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    MINUS           reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    EQ              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    NE              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    LE              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    LT              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    GE              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    GT              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    SEMICOLON       reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    OR              reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    AND             reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    RPAREN          reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    COMMA           reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+    RBRACKET        reduce using rule 71 (factor -> IDENTIFIER LPAREN argList RPAREN .)
+
+
+state 155
+
+    (74) variable -> IDENTIFIER LBRACKET expr RBRACKET .
+
+    TIMES           reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    DIVIDE          reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    PLUS            reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    MINUS           reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    EQ              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    NE              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    LE              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    LT              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    GE              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    GT              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    SEMICOLON       reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    OR              reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    AND             reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    RPAREN          reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    COMMA           reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+    RBRACKET        reduce using rule 74 (variable -> IDENTIFIER LBRACKET expr RBRACKET .)
+
+
+state 156
+
+    (33) callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .
+
+    RBRACE          reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    IF              reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    WHILE           reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    READ            reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    WRITE           reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    RETURN          reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    EXIT            reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    LBRACE          reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+    IDENTIFIER      reduce using rule 33 (callStatement -> IDENTIFIER LPAREN argList RPAREN SEMICOLON .)
+
+
+state 157
+
+    (80) argList -> argList COMMA expr .
+    (52) expr -> expr . OR simpleExpr
+    (53) expr -> expr . AND simpleExpr
+
+    RPAREN          reduce using rule 80 (argList -> argList COMMA expr .)
+    COMMA           reduce using rule 80 (argList -> argList COMMA expr .)
+    OR              shift and go to state 95
+    AND             shift and go to state 96
+
+
+state 158
+
+    (14) paramDeclList -> paramDeclList COMMA type varDecl .
+
+    RPAREN          reduce using rule 14 (paramDeclList -> paramDeclList COMMA type varDecl .)
+    COMMA           reduce using rule 14 (paramDeclList -> paramDeclList COMMA type varDecl .)
+

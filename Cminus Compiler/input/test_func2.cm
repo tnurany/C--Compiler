@@ -1,0 +1,11 @@
+int c;
+
+float b(int x,int y, float z)
+  {
+    return x+y+z;
+  }
+
+void main() {
+  c = b(1,1,2.0);
+  write(c);
+}

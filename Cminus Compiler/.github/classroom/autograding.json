@@ -1,0 +1,114 @@
+{
+  "tests": [
+    {
+      "name": "make test_call",
+      "setup": "",
+      "run": "make test_call",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    },
+    {
+      "name": "make test_f_noparams",
+      "setup": "",
+      "run": "make test_f_noparams",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "make test_func2",
+      "setup": "",
+      "run": "make test_func2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    },
+    {
+      "name": "make test_func_no",
+      "setup": "",
+      "run": "make test_func2_no",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    },
+    {
+      "name": "make test_gcd",
+      "setup": "",
+      "run": "make test_gcd",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 5
+    },
+    {
+      "name": "make test_p_noparams",
+      "setup": "",
+      "run": "make test_p_noparams",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "make test_proc2",
+      "setup": "",
+      "run": "make test_proc2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    },
+    {
+      "name": "make test_procno",
+      "setup": "",
+      "run": "make test_proc_no",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    },
+    {
+      "name": "make test_qs",
+      "setup": "",
+      "run": "make test_qs",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "make test_recurs",
+      "setup": "",
+      "run": "make test_recurs",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "make test_swapper",
+      "setup": "",
+      "run": "make test_swapper",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    }
+  ]
+}
